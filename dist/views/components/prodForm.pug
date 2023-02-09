@@ -1,0 +1,18 @@
+h1(class="txtCenter txtMed2 fontSpecial")="Form to POST products"
+
+form(class="fieldset__--margin spBorder" id="formProd")
+
+    div(class="form-group fieldset__div--margin txtCenter")
+        label(for="title")="Title"
+        input(id="title" type="text" name="title" placeholder="anteojos" class="form-control")
+
+    div(class="form-group  fieldset__div--margin txtCenter")
+        label(for="price")="Price"
+        input(id="price" type="number" name="price" placeholder="120" class="form-control -webkit-appearance: none; -moz-appearance: none; appearance: none;" min="0" onkeydown="javascript: return [`Backspace`,`Delete`,`ArrowLeft`,`ArrowRight`].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!==`Space`")
+
+    div(class="form-group  fieldset__div--margin txtCenter")
+        label(for="thumbnail")="Thumbnail"
+        input(id="thumbnail" type="text" name="thumbnail" placeholder="https://..." class="form-control")
+
+    div(class="form-group  fieldset__div--margin txtCenter")
+        input(type="submit" value="POST" class="btn btn-primary" style="height2%;width:7%;")
