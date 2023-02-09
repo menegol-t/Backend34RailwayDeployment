@@ -11,6 +11,7 @@ import passport from "passport"
 import {loginFunc, signUpFunc} from "./auth"
 import compression from "compression"
 import { logger } from "../config/logger"
+import viewsPaht from "../../views/location.js"
 
 const ttlSeconds = 600
 
@@ -24,7 +25,8 @@ const sessionOptions = {
 
 const app = express()
 
-const viewsFolderPath = path.resolve(__dirname, "../views")
+const viewsFolderPath = viewsPaht
+// path.resolve(__dirname, "../views")
 //IMPORTANT: Por algun motivo, cuando corres la version minimizada usando webpack, esta variable tiene que estar como const viewsFolderPath = path.resolve(__dirname, "../views").
 //Pero si corres la version typescript, tiene que estar como const viewsFolderPath = path.resolve(__dirname, "../../views")
 
