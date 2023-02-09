@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&family=Yeseva+One&display=swap");
+
+html {
+  font-size: 62.5%; }
+  html * {
+    font-family: "Open Sans", sans-serif;
+    text-decoration: none !important;
+    color: black;
+    margin: 0;
+    padding: 0; }
+  html body {
+    background: #020024;
+    background: linear-gradient(0deg, #020024 0%, #b8d7ff 0%, #9af6ff 100%);
+    font-size: 2rem; }
+    html body main {
+      margin: 1% 1.5%; }
+
+.txtSmall {
+  font-size: 1.5rem; }
+
+.txtSmall2 {
+  font-size: 2rem; }
+
+.txtMed {
+  font-size: 2.5rem; }
+
+.txtMed2 {
+  font-size: 4rem; }
+
+.txtBig {
+  font-size: 5rem; }
+
+.txtCenter {
+  text-align: center; }
+
+.txtLeft {
+  text-align: left; }
+
+.txtRight {
+  text-align: right; }
+
+.txtWhite {
+  color: white; }
+
+.txtBlack {
+  color: black; }
+
+.anularStretch {
+  align-content: center; }
+
+.bgBrown {
+  background-color: #E0A367; }
+
+.bgWhite {
+  background-color: white; }
+
+.bgBlack {
+  background-color: black; }
+
+.bgNormal {
+  background: transparent !important; }
+
+.fontSpecial {
+  font-family: "Yeseva One", sans-serif;
+  color: black; }
+
+.border {
+  border: 2px block solid; }
+
+.spBorder {
+  border: 2px dashed #E0A367; }
+
+.noneBorder {
+  border: none; }
+
+.centerImg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; 
+}
