@@ -1,12 +1,14 @@
 import minimist from "minimist"
 
+const usingPort = process.env.PORT || 8080
+
 const optionalArgsObj = {
     alias: {
         p: "port",
         m: "mode"
     },
     default: {
-        port: 8080,
+        port: usingPort,
         mode: "FORK"
     }
 }
