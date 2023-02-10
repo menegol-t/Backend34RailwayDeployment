@@ -6,7 +6,7 @@ const  signupRoute = Router()
 const passportOptions = {failureMessage: "Hubo un problema con tu email o password."}
 
 signupRoute.get("/", async (req: Request, res: Response) => {
-    res.render("signup")
+    res.render("signup.pug")
 })
 
 signupRoute.post("/", (req:Request, res:Response, next:NextFunction) => {
