@@ -16,6 +16,6 @@ const express_1 = require("express");
 const fakeController_1 = __importDefault(require("../controllers/fakeController"));
 const productsTestRoute = (0, express_1.Router)();
 productsTestRoute.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.render("prodIndex", { allData: yield (0, fakeController_1.default)() });
+    res.render("prodIndex.pug", { allData: yield (0, fakeController_1.default)() });
 }));
 exports.default = productsTestRoute;

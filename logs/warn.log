@@ -19,3 +19,5 @@
 [33mwarn[39m | 09-Feb-2023 19:32:41 | PID: 16608, Route GET /favicon.ico doesn't exist.
 [33mwarn[39m | 09-Feb-2023 21:28:35 | PID: 15964, Route GET /favicon.ico doesn't exist.
 [33mwarn[39m | 09-Feb-2023 21:32:21 | PID: 10000, Route GET /favicon.ico doesn't exist.
+[33mwarn[39m | 09-Feb-2023 21:52:49 | PID: 6480, Route GET /favicon.ico doesn't exist.
+[33mwarn[39m | 09-Feb-2023 21:54:42 | PID: 15160, Route GET /favicon.ico doesn't exist.

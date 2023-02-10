@@ -17,7 +17,7 @@ const passport_1 = __importDefault(require("passport"));
 const signupRoute = (0, express_1.Router)();
 const passportOptions = { failureMessage: "Hubo un problema con tu email o password." };
 signupRoute.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.render("signup");
+    res.render("signup.pug");
 }));
 signupRoute.post("/", (req, res, next) => {
     passport_1.default.authenticate("signup", passportOptions, (err, user, info) => {

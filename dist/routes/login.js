@@ -16,7 +16,7 @@ const express_1 = require("express");
 const passport_1 = __importDefault(require("passport"));
 const loginRoute = (0, express_1.Router)();
 loginRoute.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.render("login");
+    res.render("login.pug");
 }));
 loginRoute.post("/", passport_1.default.authenticate("login", { failureRedirect: "/api/login" }), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.redirect("/api/chat");

@@ -57,7 +57,7 @@ const sessionOptions = {
     cookie: { maxAge: ttlSeconds * 1000 }
 };
 const app = (0, express_1.default)();
-const viewsFolderPath = path_1.default.resolve(__dirname, "../views");
+const viewsFolderPath = path_1.default.resolve(__dirname, "../../views");
 //IMPORTANT: Por algun motivo, cuando corres la version minimizada usando webpack, esta variable tiene que estar como const viewsFolderPath = path.resolve(__dirname, "../views").
 //Pero si corres la version typescript, tiene que estar como const viewsFolderPath = path.resolve(__dirname, "../../views")
 const server = new http_1.default.Server(app);
