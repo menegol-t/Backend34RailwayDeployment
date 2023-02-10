@@ -25,7 +25,7 @@ signupRoute.post("/", (req, res, next) => {
             return next(err);
         }
         else if (!user) {
-            return res.render("signup", { error: info.message });
+            return res.render("signup.pug", { error: info.message });
         }
         else {
             res.redirect("/");
