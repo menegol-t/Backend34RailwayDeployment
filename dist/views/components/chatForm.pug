@@ -1,0 +1,37 @@
+script(src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js" integrity="sha512-aTKlYRb1QfU1jlF3k+aS4AqTpnTXci4R79mkdie/bp6Xm51O5O3ESAYhvg6zoicj/PD6VYY0XrYwsWLcvGiKZQ==" crossorigin="anonymous" referrerpolicy="no-referrer")
+
+h1(class="txtCenter txtMed2 fontSpecial")="Chat"
+
+form(id="chatForm" class="container py-5 spBorder")
+    div(class="row d-flex justify-content-center") 
+        div(class="col-md-8 col-lg-6 col-xl-4")     
+            div(class="form-group fieldset__div--margin txtCenter")
+                label(for="email")="Email"
+                input(id="emailInput" type="text" name="email" placeholder="pepe@gmail.com" class="form-control")
+            
+            div(class="form-group fieldset__div--margin txtCenter")
+                label(for="name")="Name"
+                input(id="nameInput" type="text" name="name" placeholder="Pepe" class="form-control")
+
+            div(class="form-group fieldset__div--margin txtCenter")
+                label(for="surname")="Surname"
+                input(id="surnameInput" type="text" name="surname" placeholder="Gonzalez" class="form-control")
+
+            div(class="form-group fieldset__div--margin txtCenter")
+                label(for="alias")="Alias"
+                input(id="aliasInput" type="text" name="alias" placeholder="Pepito" class="form-control")
+
+            div(class="form-group  fieldset__div--margin txtCenter")
+                label(for="age")="Age"
+                input(id="ageInput" type="number" name="age" placeholder="20" class="form-control -webkit-appearance: none; -moz-appearance: none; appearance: none;" min="0" onkeydown="javascript: return [`Backspace`,`Delete`,`ArrowLeft`,`ArrowRight`].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!==`Space`")
+
+            div(class="form-group fieldset__div--margin txtCenter")
+                label(for="avatar")="Profile Picture Link"
+                input(id="avatarInput" type="text" name="avatar" placeholder="https://firebasestorage.googleapis.com/v0/b/aubier-coderhousereact.appspot.com/o/chiquitos%2Ffacebook1.png?alt=media&token=07278c61-f5d1-49cf-ae0b-a81e3f77c2a6" class="form-control")
+
+            div(class="form-group fieldset__div--margin txtCenter")
+                label(for="text")="Text"
+                input(id="textInput" type="text" name="text" placeholder="Hola!" class="form-control")
+
+            div(class="form-group  fieldset__div--margin txtCenter")
+                input(type="submit" value="Post" class="btn btn-warning btn-lg mt-5" style="")
