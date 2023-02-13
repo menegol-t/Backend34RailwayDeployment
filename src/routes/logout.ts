@@ -9,7 +9,7 @@ logoutRoute.get("/", checkLogIn, async (req: any, res: Response) => {
 
     req.logout((err) => {
 		if(!err){
-		    res.render("out.pug", {goodbyeMsg: `Nos vemos ${email}`})
+		    res.render("logout.pug", {goodbyeMsg: `Nos vemos ${email}`})
         }else{
             logger.error(`Error logout `, err)
         }
