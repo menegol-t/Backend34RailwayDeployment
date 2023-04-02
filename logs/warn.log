@@ -28,3 +28,10 @@
 [33mwarn[39m | 02-Apr-2023 18:21:28 | PID: 16800, Route GET /favicon.ico doesn't exist.
 [33mwarn[39m | 02-Apr-2023 18:23:22 | PID: 6528, Route GET /favicon.ico doesn't exist.
 [33mwarn[39m | 02-Apr-2023 18:23:24 | PID: 6528, Route GET /favicon.ico doesn't exist.
+[33mwarn[39m | 02-Apr-2023 18:43:28 | PID: 9588, Route GET /favicon.ico doesn't exist.
+[33mwarn[39m | 02-Apr-2023 18:43:29 | PID: 9588, Route GET /favicon.ico doesn't exist.
+[33mwarn[39m | 02-Apr-2023 18:43:33 | PID: 9588, Route GET /favicon.ico doesn't exist.
+[33mwarn[39m | 02-Apr-2023 18:44:01 | PID: 9588, Route GET /favicon.ico doesn't exist.
+[31merror[39m | 02-Apr-2023 18:44:27 | Error al enviar mail de registro Invalid login: 535 Authentication failed
+[33mwarn[39m | 02-Apr-2023 18:44:27 | PID: 9588, Route GET /favicon.ico doesn't exist.
+[33mwarn[39m | 02-Apr-2023 18:51:15 | PID: 3104, Route GET /favicon.ico doesn't exist.
