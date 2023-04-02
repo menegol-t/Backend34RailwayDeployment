@@ -48,6 +48,7 @@ const auth_1 = require("./auth");
 const compression_1 = __importDefault(require("compression"));
 const logger_1 = require("../config/logger");
 const socket_1 = __importDefault(require("./socket"));
+const helmet_1 = __importDefault(require("helmet"));
 const ttlSeconds = 600;
 const sessionOptions = {
     secret: "shhhhhhhhhhh",
@@ -67,6 +68,7 @@ const errorHandler = (err, req, res, next) => {
         err
     });
 };
+app.use((0, helmet_1.default)());
 app.use(express_1.default.static("public"));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));

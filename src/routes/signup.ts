@@ -3,7 +3,6 @@ import passport from "passport";
 import { logger } from "../config/logger";
 import "dotenv/config"
 import {transporter} from "../services/email"
-import * as utils from "util"
 
 const  signupRoute = Router()
 
@@ -33,8 +32,7 @@ signupRoute.post("/", async (req:Request, res:Response, next:NextFunction) => {
             }
 
             try {
-                const info = await transporter.sendMail(mailOptions)
-                logger.info(utils.inspect(info, true, 7, true))
+                await transporter.sendMail(mailOptions)
                 res.status(200).render("login.pug", {invalidUser: "Perfecto! Ahora logueate con tus nuevas credenciales."})
             }catch(err){
                 logger.error("Error al enviar mail de registro", err)

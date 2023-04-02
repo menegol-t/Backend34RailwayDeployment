@@ -11,6 +11,7 @@ import {loginFunc, signUpFunc} from "./auth"
 import compression from "compression"
 import { logger } from "../config/logger"
 import initWebSocket from "./socket"
+import helmet from "helmet"
 
 const ttlSeconds = 600
 
@@ -36,6 +37,7 @@ const errorHandler: ErrorRequestHandler = (err: Error, req: Request, res: Respon
     })
 }
 
+app.use(helmet())
 app.use(express.static("public"))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
