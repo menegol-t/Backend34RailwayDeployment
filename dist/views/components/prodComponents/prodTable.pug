@@ -1,0 +1,18 @@
+section
+    div(class="container-fluid")
+        div(class="row" id="divProductos")
+            h1(class="txtCenter txtMed2 fontSpecial")=`Chequea nuestros productos!`
+            if prodData.length !=0
+                each item in prodData
+                    article(class='col-md-6')
+                        figure(class="width2")
+                            img(src=item.thumbnail alt=item.alt class="scale2 img-fluid")
+                            figcaption(class="txtCenter mt-5 fontSpecial txtMed ")=item.title
+                                br
+                                item.price
+                                div(class="text-center bgNormal")
+                                    div(class="card-body noneBorder")
+                                        button(type="button" id=item._id class="comprarbtn btn btn-outline-light w-auto boton__responsive bgBrown")
+                                            span(class="txtSmall2")="Añadir al carrito"
+            else 
+                div(class="txtCenter")="No hay productos cargados" 
