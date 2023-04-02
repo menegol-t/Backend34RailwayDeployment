@@ -1,0 +1,10 @@
+main 
+    div(class="card mx-auto" style="width: 30%")
+        img(class="card-img-top" src=userData.profileThumbnail alt=`${userData.name}'s profile picture.`)
+        div(class="card-body")
+            h5(class="card-title txtMed")=userData.email  
+        ul(class="list-group list-group-flush") 
+            li(class="list-group-item")=`Name: ${userData.name}`
+            li(class="list-group-item")=`Phone: ${userData.phone}`
+            li(class="list-group-item")=`Age: ${userData.age}`
+            li(class="list-group-item")=`Location: ${userData.location}`

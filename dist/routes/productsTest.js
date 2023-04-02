@@ -14,8 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const fakeController_1 = __importDefault(require("../controllers/fakeController"));
+const auth_1 = require("../middlewares/auth");
+const checkLogIn_1 = require("../middlewares/checkLogIn");
 const productsTestRoute = (0, express_1.Router)();
-productsTestRoute.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.render("prodIndex.pug", { allData: yield (0, fakeController_1.default)() });
+productsTestRoute.get("/", checkLogIn_1.checkLogIn, auth_1.checkAdmin, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.render("prodIndex.pug", { prodData: yield (0, fakeController_1.default)() });
 }));
 exports.default = productsTestRoute;

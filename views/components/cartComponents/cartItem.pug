@@ -1,0 +1,18 @@
+each cartItem in cartData.products
+    tr
+        th(scope="row")
+            div(class="d-flex align-items-center")
+                img(src=cartItem.thumbnail class="img-fluid rounded-3 width6" alt=cartItem.alt)
+                div(class="flex-column ms-4")
+                    p(class="mb-2 txtSmall2")=cartItem.title
+        td(class="align-middle")
+            div
+                button(type="button" class="btn btn-dark btn-lg")="Lorem"
+        td(class="align-middle")
+            p(class="mb-0 txtMed2 txtCenter")=cartItem.quantity
+        td(class="align-middle")
+            div(class="d-flex flex-row")
+                p(class="mb-0 txtMed txtCenter")=`$${cartItem.price}`
+        td(class="align-middle")
+            div(class="d-flex flex-row")
+                p(class="mb-0 txtMed txtCenter")=`$${cartItem.price * cartItem.quantity}`

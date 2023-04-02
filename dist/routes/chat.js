@@ -13,6 +13,6 @@ const express_1 = require("express");
 const checkLogIn_1 = require("../middlewares/checkLogIn");
 const chatRoute = (0, express_1.Router)();
 chatRoute.get("/", checkLogIn_1.checkLogIn, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.render("chatIndex.pug", { msg: `Bienvenido ${req.user.email}` });
+    res.render("home.pug", { email: `${req.user.email}` });
 }));
 exports.default = chatRoute;

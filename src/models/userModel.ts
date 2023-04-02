@@ -1,18 +1,28 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt"
 
-const usersCollection = "user"
+const usersCollection = "userList"
 
-interface IUser{
+export interface IUser{
     email: string,
     password: string,
-    isValidPassword: (password: string) => Promise<boolean>
+    name: string,
+    location: string,
+    age: number,
+    phone: number,
+    profileThumbnail: string,
+    isValidPassword?: (password: string) => Promise<boolean>
 }
 
 const userSchema = new mongoose.Schema<IUser>(
     {
         email: {type: String, required: true, unique: true},
-        password: {type: String, required: true}
+        password: {type: String, required: true},
+        name: {type: String, required: true},
+        location: {type: String, required: true},
+        age: {type: Number, required: true},
+        phone: {type: Number, required: true},
+        profileThumbnail: {type: String, required: true}
     },
     {timestamps: true, versionKey: false}
 )
@@ -28,4 +38,4 @@ userSchema.methods.isValidPassword = async function(password: string) {
     return await bcrypt.compare(password, this.password) 
 }
 
-export const UserModel = mongoose.model<IUser>(usersCollection, userSchema)
+export const UserModel = mongoose.model<IUser>(usersCollection, userSchema) 

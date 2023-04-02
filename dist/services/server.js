@@ -36,11 +36,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const express_session_1 = __importDefault(require("express-session"));
 const path_1 = __importDefault(require("path"));
 const endpoints_1 = __importDefault(require("../routes/endpoints"));
-const socket_1 = __importDefault(require("./socket"));
 const util = __importStar(require("util"));
-const express_session_1 = __importDefault(require("express-session"));
 const http_1 = __importDefault(require("http"));
 require("dotenv/config");
 const checkLogIn_1 = require("../middlewares/checkLogIn");
@@ -48,6 +47,7 @@ const passport_1 = __importDefault(require("passport"));
 const auth_1 = require("./auth");
 const compression_1 = __importDefault(require("compression"));
 const logger_1 = require("../config/logger");
+const socket_1 = __importDefault(require("./socket"));
 const ttlSeconds = 600;
 const sessionOptions = {
     secret: "shhhhhhhhhhh",
@@ -60,11 +60,11 @@ const app = (0, express_1.default)();
 const viewsFolderPath = path_1.default.resolve(__dirname, "../../views");
 //IMPORTANT: Por algun motivo, cuando corres la version minimizada usando webpack, esta variable tiene que estar como const viewsFolderPath = path.resolve(__dirname, "../views").
 //Pero si corres la version typescript, tiene que estar como const viewsFolderPath = path.resolve(__dirname, "../../views")
-const server = new http_1.default.Server(app);
 const errorHandler = (err, req, res, next) => {
+    logger_1.logger.error(util.inspect(err, true, 7, true));
     return res.status(500).json({
         msg: "Unexpected error",
-        error: util.inspect(err, true, 7, true)
+        err
     });
 };
 app.use(express_1.default.static("public"));
@@ -83,13 +83,14 @@ passport_1.default.use("signup", auth_1.signUpFunc);
 app.set("views", viewsFolderPath);
 app.set("view engine", "pug");
 app.get("/", checkLogIn_1.checkLogIn, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.redirect("/api/chat");
+    res.redirect("/api/home");
 }));
-(0, socket_1.default)(server);
 app.use("/api", endpoints_1.default);
 app.use(errorHandler);
 app.get('*', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     logger_1.logger.warn(`PID: ${process.pid}, Route ${req.method} ${req.url} doesn't exist.`);
-    res.redirect("/");
+    res.status(400).redirect("/");
 }));
+const server = new http_1.default.Server(app);
+(0, socket_1.default)(server);
 exports.default = server;

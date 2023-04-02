@@ -15,9 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const child_process_1 = __importDefault(require("child_process"));
 const path_1 = __importDefault(require("path"));
+const checkLogIn_1 = require("../middlewares/checkLogIn");
 const timeWasterPath = path_1.default.resolve(__dirname, "../controllers/randomsTimeWaster");
 const randoms = (0, express_1.Router)();
-randoms.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+randoms.get("/", checkLogIn_1.checkLogIn, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const timeWaster = child_process_1.default.fork(timeWasterPath);
     const { cant } = req.query;
     timeWaster.send(`${cant}`);

@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const userInputChecks_1 = require("../middlewares/userInputChecks");
+const prodMethods_1 = require("../controllers/prodMethods");
+const auth_1 = require("../middlewares/auth");
+const checkLogIn_1 = require("../middlewares/checkLogIn");
+const prodsRoute = (0, express_1.Router)();
+prodsRoute.get("/", checkLogIn_1.checkLogIn, prodMethods_1.getAllProd);
+prodsRoute.get("/:productId", checkLogIn_1.checkLogIn, auth_1.checkAdmin, userInputChecks_1.requestParamCheck, prodMethods_1.getProdById);
+prodsRoute.post("/", checkLogIn_1.checkLogIn, auth_1.checkAdmin, userInputChecks_1.requestBodyCheck, prodMethods_1.saveProd);
+prodsRoute.put("/:productId", checkLogIn_1.checkLogIn, auth_1.checkAdmin, userInputChecks_1.requestParamCheck, userInputChecks_1.reqBodyUpdateCheck, prodMethods_1.updateProd);
+prodsRoute.delete("/:productId", checkLogIn_1.checkLogIn, auth_1.checkAdmin, userInputChecks_1.requestParamCheck, prodMethods_1.deleteProd);
+exports.default = prodsRoute;

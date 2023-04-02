@@ -5,10 +5,11 @@ const chatMsgsCollection = "chatMsg"
 interface IMsg{
     email: string, 
     name: string, 
-    surname: string,
+    password: string,
+    location: string,
     age: number,
-    alias: string,
-    avatar: string
+    phone: number,
+    profileThumbnail: string,
 }
 
 interface IChatMsg{
@@ -21,10 +22,11 @@ const chatMsgSchema = new mongoose.Schema<IChatMsg>(
         author: {
             email: {type: String},
             name: {type: String},
-            surname: {type: String},
+            password: {type: String},
+            location: {type: String},
             age: {type: Number},
-            alias: {type: String},
-            avatar: {type: String}
+            phone: {type: Number},
+            profileThumbnail: {type: String}
         },
         text: {type: String, required: true}
     },

@@ -1,7 +1,4 @@
 "use strict";
-// import passport from "passport";
-// import { UserModel } from "../models/userModel";
-// import { Strategy as PassportStrategy } from "passport-strategy";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -16,96 +13,72 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.signUpFunc = exports.loginFunc = void 0;
-// interface IStrategyOptionsWithRequest {
-//     usernameField?: string | undefined;
-//     passwordField?: string | undefined;
-//     session?: boolean | undefined;
-//     passReqToCallback: true;
-// }
-// interface IVerifyOptions {
-//     message: string;
-// }
-// interface VerifyFunctionWithRequest {
-//     (
-//         req: Request,
-//         username: string,
-//         password: string,
-//         done: (error: any, user?: Express.User | false, options?: IVerifyOptions) => void,
-//     ): void;
-// }
-// class Strategy extends PassportStrategy {
-//     constructor(options: IStrategyOptionsWithRequest, verify: VerifyFunctionWithRequest){super()};
-//     name: string;
-// }
-// const StrategyOptions: IStrategyOptionsWithRequest = {
-//     usernameField: "username",
-//     passwordField: "password",
-//     passReqToCallback: true
-// }
-// const login: VerifyFunctionWithRequest = async(req, username, password, done) =>{
-//     const user = await UserModel.findOne({username, password})
-//     if(!user){
-//         return done(null, false, {message: "Las credenciales no son correctas."})
-//     }else{
-//         return done(null, user)
-//     }
-// }
-// const signup: VerifyFunctionWithRequest = async(req, username, password, done) => {
-//     try {
-//         const newUser = await UserModel.create({username, password})
-//         return done(null, newUser)
-//     } catch (err) {
-//         console.log("Se rompio todo en el signup de passport-local");
-//         console.log(err);
-//         return done(null, false, {message: "Error al crear usuario"})
-//     }
-// }
-// export const loginFunc = new Strategy(StrategyOptions, login)
-// export const signUpFunc = new Strategy(StrategyOptions, signup)
-// passport.serializeUser((user: any, done) =>  {
-//     done(null, user._id)
-// })
-// passport.deserializeUser(async(userId, done) => {
-//     await UserModel.findById(userId).then((user)=>{return done(null, user)})
-// })
 const passport_local_1 = require("passport-local");
 const userModel_1 = require("../models/userModel");
 const passport_1 = __importDefault(require("passport"));
+const logger_1 = require("../config/logger");
 const StrategyOptionsWithRequest = { usernameField: "username", passwordField: "password", passReqToCallback: true };
+function validateEmail(mail) {
+    const isRealEmail = /\S+@\S+\.\S+/;
+    return isRealEmail.test(mail);
+}
 const logIn = (req, username, password, done) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield userModel_1.UserModel.findOne({ email: username });
         if (!user) {
-            return done(null, false, { message: "Usuario no encontrado" });
+            return done(null, false, { message: "Credenciales invalidas." });
         }
         const isValid = yield user.isValidPassword(password);
         if (!isValid) {
-            return done(null, false, { message: "Contraseña incorrecta" });
+            return done(null, false, { message: "Credenciales invalidas." });
         }
         else {
-            return done(null, user, { message: "Login correcto" });
+            return done(null, user, { message: "Login correcto." });
         }
     }
     catch (err) {
+        logger_1.logger.error(`Error al crear usuario L26 SRC/SERVICES/AUTH `, err);
         return done(err);
     }
 });
+//aca el tipo de req es Express.Request 
 const signup = (req, username, password, done) => __awaiter(void 0, void 0, void 0, function* () {
-    if (!username || !password) {
-        return done(null, false, { message: "Completa los datos" });
+    const { name, location, age, phone, profileThumbnail } = req.body;
+    const telephone = phone.split(' ').join('');
+    const signUpData = [username, password, name, location, age, telephone, profileThumbnail];
+    const missingSomeInfo = signUpData.some(item => item == undefined || item == '' || item == null || item == false);
+    //cambiar a switch statement
+    if (missingSomeInfo) {
+        return done(null, false, { message: "Completa todos los datos." });
+    }
+    else if (isNaN(age) || isNaN(telephone)) {
+        return done(null, false, { message: "Asegurate de que la edad sea un numero, y el telefono contenga unicamente numeros, sin espacios ni simbolos." });
+    }
+    else if (telephone.length > 15 || telephone.length < 8) {
+        return done(null, false, { message: "El numero de telefono debe tener 8 caracteres como minimo y 15 como maximo." });
+    }
+    else if (age.length > 2) {
+        return done(null, false, { message: "Ingresa una edad real." });
+    }
+    else if (age < 18) {
+        return done(null, false, { message: "Tienes que tener mas de 18 años para usar esta app." });
+    }
+    else if (!validateEmail(username)) {
+        return done(null, false, { message: "Por favor ingresa un email real." });
     }
     try {
         const email = username;
-        const userData = { email, password };
+        const userData = { email, password, name, location, age, phone, profileThumbnail };
         const newUser = yield userModel_1.UserModel.create(userData);
         return done(null, newUser);
     }
     catch (err) {
         if (err.code == "11000") {
-            return done(null, false, { message: "Ese usuario ya esta en uso." });
+            return done(null, false, { message: "Ese email ya esta en uso." });
         }
         else {
-            return done(null, false, { message: "Error al crear usuario" });
+            logger_1.logger.error(`Error al crear usuario L52 SRC/SERVICES/AUTH`, err);
+            return done(null, false, { message: "Error al crear usuario." });
         }
     }
 });
@@ -120,6 +93,7 @@ passport_1.default.deserializeUser((id, done) => __awaiter(void 0, void 0, void 
         done(null, user);
     }
     catch (err) {
+        logger_1.logger.error(`Error al deserializar user id  L68 SRC/SERVICES/AUTH`, err);
         done(err);
     }
 }));

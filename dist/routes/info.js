@@ -15,8 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const arguments_1 = require("../config/arguments");
 const os_1 = __importDefault(require("os"));
+const checkLogIn_1 = require("../middlewares/checkLogIn");
+const auth_1 = require("../middlewares/auth");
 const infoRoute = (0, express_1.Router)();
-infoRoute.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+infoRoute.get("/", checkLogIn_1.checkLogIn, auth_1.checkAdmin, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.json({
         Arguments: arguments_1.args,
         SO: process.platform,
