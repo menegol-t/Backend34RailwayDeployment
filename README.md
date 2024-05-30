@@ -1,10 +1,7 @@
-Pre Entrega funcional:
-$ npm run start
-
-Por default, se usa puerto 8080 en modo FORK. Se puede seleccionar si se usan otros puertos o se utiliza el modo cluster con "-p" y "-m", por ejemplo: 
-
+Por default, se usa puerto 8080 en modo FORK. Se puede seleccionar si se usan otros puertos o se utiliza el modo cluster (es decir 1 proceso por CPU core) con "-p" y "-m", por ejemplo: 
+```
 $ npm run start -- -p:85 -m:CLUSTER
-
+```
 Todos los errores y warnings se guardan en /LOGS/ERROR.LOG o /LOGS/WARN.LOG
 
 Requisitos en varibales de entorno para la aplicacion, en un archivo .env a nivel root: 
